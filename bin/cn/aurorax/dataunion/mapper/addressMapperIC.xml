@@ -16,20 +16,8 @@
 		ic_connect_four_dierbian limit
 		#{offset}, #{maxcount}
 	</select>
-	<update id="updateUnits">
-		<foreach collection="records" item="item" index="index" open=""
-			close="" separator=";">
-			update ic_connect_four_dierbian
-			<set>
-				num_building_normal=#{item.building},
-				num_unit_normal=#{item.unit},
-				num_door_normal=#{item.door},
-				tag=#{tag}
-			</set>
-			where userid=${item.id}
-		</foreach>
-	</update>
 	<update id="createTempTable">
+		drop table if exists temp;
 		create temporary table temp(
 		userid nchar(64),
 		building nchar(64),

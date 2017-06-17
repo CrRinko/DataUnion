@@ -5,13 +5,12 @@ import java.io.Reader;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.log4j.Logger;
 
-import cn.aurorax.dataunion.task.Scheduler;
+import cn.aurorax.dataunion.mapper.AddressMapperIC;
+import cn.aurorax.dataunion.task.NormalizeScheduler;
 
 public class SchedulerTest {
 	private static SqlSessionFactory sqlSessionFactory;
-	private static Logger logger = Logger.getLogger(TaskTest.class);
 
 	static {
 		try {
@@ -27,8 +26,8 @@ public class SchedulerTest {
 	}
 
 	public static void main(String[] args) {
-		Scheduler scheduler=new Scheduler("TEST3");
-		scheduler.setThreadNum(1);
+		NormalizeScheduler scheduler=new NormalizeScheduler("TEST_S",AddressMapperIC.class);
+		scheduler.setThreadNum(2);
 		scheduler.setTaskCount(1000);
 		scheduler.setDebug(true);
 		scheduler.start();

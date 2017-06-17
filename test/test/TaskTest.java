@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
 
-import cn.aurorax.dataunion.task.ICNormalizeTask;
+import cn.aurorax.dataunion.mapper.AddressMapperIC;
 import cn.aurorax.dataunion.task.NormalizeTask;
 import cn.aurorax.dataunion.utils.Normalizer;
 
@@ -30,7 +30,8 @@ public class TaskTest {
 	
 	public static void main(String[] args) {
 		try{
-			NormalizeTask task=new ICNormalizeTask(0, sqlSessionFactory, "TEST_TIME", 0, 1000,100);
+			NormalizeTask task=new NormalizeTask(0, sqlSessionFactory, "TEST_TIME", 0, 1000,100);
+			task.setMapperClass(AddressMapperIC.class);
 			task.run();
 			Set<Character> set=Normalizer.getCharSet();
 			for(Character ch:set){

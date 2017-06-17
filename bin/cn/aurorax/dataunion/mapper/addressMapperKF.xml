@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.aurorax.dataunion.mapper.AddressMapperKF">
+	<resultMap type="AddressRecord" id="addressKF">
+		<id column="id" property="id" />
+		<result column="小区" property="community" />
+		<result column="楼" property="building" />
+		<result column="单元" property="unit" />
+		<result column="门牌号" property="door" />
+		<result column="地址编码" property="id" />
+	</resultMap>
+	<select id="getRecords" resultMap="addressKF">
+		select 地址编码, 小区,
+		楼, 单元, 门牌号 from
+		kf_end2_l_four_not_union limit
+		#{offset}, #{maxcount}
+	</select>
+	<update id="createTempTable">
+		drop table if exists temp;
+		create temporary table temp(
+		userid nchar(64),
+		building nchar(64),
+		unit nchar(64),
+		door nchar(64),
+		tag nchar(64)
+		)
+	</update>
+	<insert id="insertIntoTemp">
+		insert into temp(userid, building, unit, door, tag) values
+		<foreach collection="records" item="item" index="index"
+			separator=",">
+			(#{item.id},#{item.building},#{item.unit},#{item.door},#{tag})
+		</foreach>
+	</insert>
+	<update id="updateFromTemp">
+		update kf_end2_l_four_not_union, temp
+		<set>
+			kf_end2_l_four_not_union.building=temp.building,
+			kf_end2_l_four_not_union.unit=temp.unit,
+			kf_end2_l_four_not_union.door=temp.door,
+			kf_end2_l_four_not_union.tag=temp.tag
+		</set>
+		where kf_end2_l_four_not_union.地址编码=temp.userid
+	</update>
+</mapper>

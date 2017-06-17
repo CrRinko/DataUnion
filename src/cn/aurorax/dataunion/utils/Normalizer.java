@@ -55,4 +55,7 @@ public class Normalizer {
 	public static Set<Character> getCharSet(){
 		return charSet;
 	}
+	public static void clear(){
+		charSet.clear();
+	}
 }
