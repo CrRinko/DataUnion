@@ -1,0 +1,11 @@
+2017-06-16 14:35:38  [ main:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-06-16 14:35:38  [ main:60 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2017-06-16 14:35:38  [ main:62 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2017-06-16 14:35:38  [ main:63 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2017-06-16 14:35:38  [ main:63 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2017-06-16 14:35:38  [ main:108 ] - [ DEBUG ]  Opening JDBC Connection
+2017-06-16 14:35:38  [ main:386 ] - [ DEBUG ]  Created connection 1993134103.
+2017-06-16 14:35:38  [ main:387 ] - [ DEBUG ]  Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@76ccd017]
+2017-06-16 14:35:38  [ main:389 ] - [ DEBUG ]  ==>  Preparing: select USERID, community, num_lou, num_unit, num_door from ic_connect_four_dierbian limit ?, ? 
+2017-06-16 14:35:38  [ main:419 ] - [ DEBUG ]  ==> Parameters: 0(Integer), 100(Integer)
+2017-06-16 14:35:38  [ main:452 ] - [ DEBUG ]  <==      Total: 100

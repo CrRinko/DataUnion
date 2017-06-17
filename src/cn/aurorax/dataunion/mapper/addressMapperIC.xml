@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.aurorax.dataunion.mapper.AddressMapperIC">
+	<resultMap type="AddressRecord" id="addressIC">
+		<id column="id" property="id" />
+		<result column="community" property="community" />
+		<result column="num_lou" property="building" />
+		<result column="num_unit" property="unit" />
+		<result column="num_door" property="door" />
+		<result column="USERID" property="id" />
+	</resultMap>
+	<select id="getRecords" resultMap="addressIC">
+		select USERID, community, num_lou, num_unit, num_door from
+		ic_connect_four_dierbian limit #{offset}, #{maxcount}
+	</select>
+	<update id="updateUnits">
+		<foreach collection="records" item="item" index="index" open=""
+			close="" separator=";">
+			update ic_connect_four_dierbian
+			<set>
+				num_building_normal=#{item.building},
+				num_unit_normal=#{item.unit},
+				num_door_normal=#{item.door},
+				tag=#{tag}
+			</set>
+			where userid=${item.id}
+		</foreach>
+	</update>
+	
+</mapper>
