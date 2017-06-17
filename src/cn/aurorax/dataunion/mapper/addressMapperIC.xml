@@ -11,8 +11,10 @@
 		<result column="USERID" property="id" />
 	</resultMap>
 	<select id="getRecords" resultMap="addressIC">
-		select USERID, community, num_lou, num_unit, num_door from
-		ic_connect_four_dierbian limit #{offset}, #{maxcount}
+		select USERID, community,
+		num_lou, num_unit, num_door from
+		ic_connect_four_dierbian limit
+		#{offset}, #{maxcount}
 	</select>
 	<update id="updateUnits">
 		<foreach collection="records" item="item" index="index" open=""
@@ -27,5 +29,30 @@
 			where userid=${item.id}
 		</foreach>
 	</update>
-	
+	<update id="createTempTable">
+		create temporary table temp(
+		userid nchar(64),
+		building nchar(64),
+		unit nchar(64),
+		door nchar(64),
+		tag nchar(64)
+		)
+	</update>
+	<insert id="insertIntoTemp">
+		insert into temp(userid, building, unit, door, tag) values
+		<foreach collection="records" item="item" index="index"
+			separator=",">
+			(#{item.id},#{item.building},#{item.unit},#{item.door},#{tag})
+		</foreach>
+	</insert>
+	<update id="updateFromTemp">
+		update ic_connect_four_dierbian, temp
+		<set>
+			ic_connect_four_dierbian.num_building_normal=temp.building,
+			ic_connect_four_dierbian.num_unit_normal=temp.unit,
+			ic_connect_four_dierbian.num_door_normal=temp.door,
+			ic_connect_four_dierbian.tag=temp.tag
+		</set>
+		where ic_connect_four_dierbian.userid=temp.userid
+	</update>
 </mapper>

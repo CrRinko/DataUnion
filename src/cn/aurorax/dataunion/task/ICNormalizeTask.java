@@ -52,6 +52,8 @@ public class ICNormalizeTask extends NormalizeTask {
 		try {
 			AddressMapperIC addressMapperIC = session.getMapper(AddressMapperIC.class);
 			int curIndex = offset;
+			addressMapperIC.createTempTable();
+			session.commit();
 			while (curIndex < offset + maxCount) {
 				int remainCount = offset + maxCount - curIndex;
 //				DUBUG
@@ -88,12 +90,18 @@ public class ICNormalizeTask extends NormalizeTask {
 				logger.info("Normailze: "+(etime-stime)+"ms");
 //				DEBUG
 				stime=System.currentTimeMillis();
-				addressMapperIC.updateUnits(list, TAG);
+				addressMapperIC.insertIntoTemp(list, TAG);
 				session.commit();
 				etime=System.currentTimeMillis();
-				logger.info("Update: "+(etime-stime)+"ms");
+				logger.info("Insert: "+(etime-stime)+"ms");
 				curIndex += list.size();
 			}
+//			DEBUG
+			long stime=System.currentTimeMillis();
+			addressMapperIC.updateFromTemp();
+			session.commit();
+			long etime=System.currentTimeMillis();
+			logger.info("Update: "+(etime-stime)+"ms");
 			session.close();
 			if(listener!=null)listener.onFinished(getID());
 		} catch (Exception e) {

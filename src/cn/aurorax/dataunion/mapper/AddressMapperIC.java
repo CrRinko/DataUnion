@@ -11,9 +11,9 @@ public interface AddressMapperIC {
 
 	int updateUnits(@Param("records") List<AddressRecord> records, @Param("tag") String tag);
 	
-//	void createTempTable();
-//	
-//	int insertIntoTemp(@Param("records") List<AddressRecord> records, @Param("tag") String tag);
-//	
-//	int updateFromTemp();
+	void createTempTable();
+	
+	int insertIntoTemp(@Param("records") List<AddressRecord> records, @Param("tag") String tag);
+	
+	int updateFromTemp();
 }
