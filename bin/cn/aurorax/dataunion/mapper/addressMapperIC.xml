@@ -14,7 +14,7 @@
 		select USERID, community,
 		num_lou, num_unit, num_door from
 		ic_connect_four_dierbian limit
-		#{offset}, #{maxcount}
+		#{offset}, #{maxcount}"src/cn/aurorax/dataunion/mapper/addressMapperIC.xml"
 	</select>
 	<update id="createTempTable">
 		drop table if exists temp;

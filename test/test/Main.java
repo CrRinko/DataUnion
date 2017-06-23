@@ -7,10 +7,10 @@ import cn.aurorax.dataunion.task.NormalizeScheduler;
 public class Main {
 
 	public static void main(String[] args) {
-//		NormalizeScheduler scheduler=new NormalizeScheduler("WORK2",AddressMapperIC.class);
-//		scheduler.start();
-		NormalizeScheduler scheduler=new NormalizeScheduler("WORK2", AddressMapperKF.class);
+		NormalizeScheduler scheduler=new NormalizeScheduler("WORK3",AddressMapperIC.class);
 		scheduler.start();
+		NormalizeScheduler scheduler2=new NormalizeScheduler("WORK3", AddressMapperKF.class);
+		scheduler2.start();
 	}
 
 }

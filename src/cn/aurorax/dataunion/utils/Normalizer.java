@@ -21,25 +21,25 @@ public class Normalizer {
 						newstr += '2';
 						break;
 					case 'Èý':
-						newstr += '2';
+						newstr += '3';
 						break;
 					case 'ËÄ':
-						newstr += '2';
+						newstr += '4';
 						break;
 					case 'Îå':
-						newstr += '2';
+						newstr += '5';
 						break;
 					case 'Áù':
-						newstr += '2';
+						newstr += '6';
 						break;
 					case 'Æß':
-						newstr += '2';
+						newstr += '7';
 						break;
 					case '°Ë':
-						newstr += '2';
+						newstr += '8';
 						break;
 					case '¾Å':
-						newstr += '2';
+						newstr += '9';
 						break;
 					default:
 						if(!charSet.contains(ch)){
